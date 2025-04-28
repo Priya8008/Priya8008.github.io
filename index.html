@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Digital Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+      body {
+        font-family: 'Roboto', Arial, sans-serif;
+        margin: 0;
+        color: #e0b400; /* Slightly darker than #FFC107 for readability */
+        background: transparent;
+        position: relative;
+        min-height: 100vh;
+        width: 100%;
+        overflow-x: hidden;
+        padding: 0 25px;
+        box-sizing: border-box;
+      }
+      .content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      section {
+        margin-bottom: 60px;
+      }
+      body::before {
+        content: "";
+        background: url('https://images.unsplash.com/photo-1533134713080-d99bdc99573e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+        background-size: cover;
+        filter: blur(15px);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        pointer-events: none;
+      }
+      header {
+        background: #87CEEB;
+        color: #222;
+        padding: 1rem;
+        text-align: center;
+        border-radius: 0 0 16px 16px;
+        margin-bottom: 24px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+      }
+      header h1 {
+        margin: 0 0.5rem 1rem;
+      }
+      header p {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+      nav {
+        background: #FFF8E6;
+        padding: 15px;
+        border-radius: 15px;
+        max-width: 90%;
+        box-shadow: 0 2px 8px rgba(36,158,160,0.07);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 10px auto 32px auto;
+      }
+      nav a {
+        font-family: 'Roboto', Arial, sans-serif;
+        color: #297373;
+        text-decoration: none;
+        display: inline-block;
+        margin: 0.5rem;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: color 0.25s, transform 0.25s;
+        padding: 8px 15px;
+        border-radius: 8px;
+        outline: none;
+      }
+      nav a:hover,
+      nav a:focus {
+        color: #f25f5c;
+        background: #ffe0d1;
+        transform: scale(1.1);
+        border-bottom: 2px solid #f25f5c;
+        text-decoration: none;
+      }
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 18px;
+        padding: 24px 18px 12px 18px;
+        box-shadow: 0 1px 10px rgba(36,158,160,0.05);
+      }
+      h2 {
+        color: #FFDF4D;
+        margin-top: 0;
+      }
+      ul, ol {
+        padding-left: 18px;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      /* Projects Gallery Styling */
+      .projects {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+      .project {
+        background: rgba(255,255,255,0.08);
+        padding: 18px 14px;
+        border-radius: 12px;
+        box-shadow: 0 1px 6px rgba(36,158,160,0.06);
+      }
+      .project h3 {
+        margin-top: 0;
+        color: #ffe082;
+      }
+      /* Contact form styling */
+      form {
+        background: rgba(255,255,255,0.08);
+        border-radius: 12px;
+        box-shadow: 0 1px 6px rgba(36,158,160,0.05);
+        padding: 24px 18px;
+      }
+      label {
+        font-weight: 500;
+        color: #ffecb3;
+      }
+      input, textarea, button {
+        font-family: 'Roboto', Arial, sans-serif;
+        font-size: 1rem;
+        border: none;
+        border-radius: 7px;
+        margin-bottom: 12px;
+      }
+      input, textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        background: #fffbea;
+        color: #222;
+        resize: vertical;
+      }
+      button {
+        padding: 10px 22px;
+        background: #297373;
+        color: #fffbea;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      button:hover,
+      button:focus {
+        background: #f25f5c;
+      }
+      footer {
+        text-align: center;
+        padding: 18px;
+        background: #FFF8E6;
+        color: #444;
+        border-radius: 18px 18px 0 0;
+        margin-top: 40px;
+        font-size: 1rem;
+        box-shadow: 0 -1px 10px rgba(36,158,160,0.03);
+      }
+      @media (min-width: 768px) {
+        nav {
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+        nav a {
+          flex: 0 0 48%;
+          box-sizing: border-box;
+          text-align: center;
+        }
+        .projects {
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 28px;
+        }
+        .project {
+          flex: 1 1 40%;
+          min-width: 300px;
+        }
+        main {
+          padding: 38px 35px 18px 35px;
+        }
+      }
+      @media (max-width: 600px) {
+        body {
+          padding: 0 6px;
+        }
+        nav a {
+          font-size: 0.95rem;
+        }
+        main {
+          padding: 10px 3px 2px 3px;
+        }
+      }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Supriya Bhange</h1>
+    <p>Aspiring Chemical Engineer | Innovator | Problem Solver</p>
+  </header>
+  <nav>
+    <a href="#about">Get to know me</a>
+    <a href="#projects">Project & Research Gallery</a>
+    <a href="#skills">Skills & Strengths</a>
+    <a href="#contact">Contact Me</a>
+    <a href="#resume">Professional Background</a>
+  </nav>
+
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Hi, I’m Supriya Bhange, a passionate Chemical Engineering student at MIT Academy of Engineering (MITAOE), Pune. With a strong interest in innovative problem-solving and sustainable technologies, I am committed to making a meaningful impact in the world of chemical engineering.<br><br>
+        I enjoy exploring how science can shape a better future, and I’m always eager to learn beyond the classroom—whether it’s through hands-on projects, internships, or collaborations. My academic journey so far has inspired me to pursue my master’s studies in Germany, where I hope to deepen my expertise and experience a global perspective in the field.<br><br>
+        Driven by curiosity and ambition, I’m constantly seeking opportunities to grow and contribute to the field of chemical engineering.
+      </p>
+    </section>
+
+    <section id="projects">
+      <h2>My Projects and Researches</h2>
+      <div class="projects">
+        <div class="project">
+          <h3>Q-Diet: Personalized Nutrition Planner</h3>
+          <p>
+            I developed the idea for Q-Diet, a personalized nutrition planning tool designed to help users make informed dietary choices based on their unique needs and health goals. The project explores the intersection of chemical engineering and health science, focusing on data-driven nutrition, ingredient analysis, and meal planning optimization.
+          </p>
+        </div>
+        <div class="project">
+          <h3>Velcro: Research & Applications</h3>
+          <p>
+            Conducted in-depth research on the properties, chemical composition, and innovative applications of Velcro. My work analyzed the molecular interactions behind Velcro’s adhesion, its real-world uses, and the scope for sustainable material alternatives in manufacturing.
+          </p>
+        </div>
+        <div class="project">
+          <h3>Assessing Campus Sustainability: Greenness of Reyansh College of Hotel</h3>
+          <p>
+            Performed a comprehensive evaluation of the environmental sustainability (greenness) at Reyansh College of Hotel Management. This involved auditing energy consumption, waste management, and green practices, and providing actionable recommendations for further sustainability improvements.
+          </p>
+        </div>
+        <div class="project">
+          <h3>Pune’s Carbon Footprint Analysis</h3>
+          <p>
+            Calculated and analyzed the total carbon footprint generated by the city of Pune. The project required collecting local data, estimating emission sources, and applying chemical engineering methodologies to quantify environmental impact—contributing to awareness and policymaking for a more sustainable urban future.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>My Skills and Strengths</h2>
+      <ul>
+        <li>Analytical Thinking: Able to break down complex problems and develop logical, practical solutions.</li>
+        <li>Time Management: Efficient in balancing multiple projects, coursework, and responsibilities.</li>
+        <li>Teamwork & Collaboration: Collaborative, supportive, and respectful in group settings; comfortable working in diverse teams on research and project assignments.</li>
+        <li>
+          Technical Proficiency:
+          <ul>
+            <li>Chemical Process Understanding</li>
+            <li>Lab Experimentation</li>
+            <li>Data Analysis & Interpretation</li>
+          </ul>
+        </li>
+        <li>Communication: Clear written and verbal communication skills for reports, presentations, and teamwork.</li>
+        <li>Adaptability: Open to new challenges, technologies, and international education opportunities.</li>
+        <li>Leadership: Able to motivate and guide others during group tasks or project work.</li>
+        <li>Attention to Detail: Careful and precise in both academic and practical work.</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Form</h2>
+      <!-- 
+        For a professional portfolio, replace "mailto:" with a form handler service or backend if needed.
+      -->
+      <form action="mailto:202401050078@mitaoe.ac.in" method="POST" enctype="text/plain" style="max-width:400px;margin:auto;">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+    <!-- Placeholder for Professional Background -->
+    <section id="resume">
+      <h2>Professional Background</h2>
+      <p>
+        <!-- Add your resume or career summary here, e.g., internships, achievements, certifications, work experience -->
+        Details coming soon!
+      </p>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 Supriya Bhange | All rights reserved.
+  </footer>
+</body>
+</html>
